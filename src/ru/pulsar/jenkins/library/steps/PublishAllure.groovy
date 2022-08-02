@@ -27,12 +27,8 @@ class PublishAllure implements Serializable {
 
         steps = ContextRegistry.getContext().getStepExecutor()
 
-        if (config.stageFlags.initSteps) {
-            safeUnstash('init-allure')
-        }
-        if (config.stageFlags.bdd) {
-            safeUnstash('bdd-allure')
-        }
+        safeUnstash('init-allure')
+        safeUnstash('bdd-allure')
         if (config.stageFlags.smoke && config.smokeTestOptions.publishToAllureReport) {
             safeUnstash(SmokeTest.SMOKE_ALLURE_STASH)
         }
